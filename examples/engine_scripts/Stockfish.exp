@@ -1,0 +1,15 @@
+#! /usr/bin/expect -f
+
+# Assumes that stockfish is in path
+# Requires expect to be installed
+
+set depth [lindex $argv 0]
+set fen [lindex $argv 1]
+
+spawn stockfish
+expect "\r"
+send "position fen $fen\r"
+expect "\r"
+send "go perft $depth\r"
+expect "\r\n\r\n"
+exit
